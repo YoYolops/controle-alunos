@@ -1,4 +1,4 @@
-package com.controle;
+package controle;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,7 @@ public class RepositorioAlunos {
 
     public void CadastrarAluno(String nome, String matricula, String curso) {
         if(!isValidAluno(nome, matricula, curso)) {
-            throw IllegalArgumentException("Nome, matricula e/ou curso inválido");
+            throw new IllegalArgumentException("Nome, matricula e/ou curso inválido");
         }
 
         Aluno aluno = new Aluno(nome, matricula, curso);
@@ -19,7 +19,7 @@ public class RepositorioAlunos {
     }
 
     public int matriculaEstaCadastrada(String matricula) {
-        return alunos.contains(matricula);
+        return alunos.indexOf(new Aluno("totodebabalong", matricula, "Moda"));
     }
 
     /** 

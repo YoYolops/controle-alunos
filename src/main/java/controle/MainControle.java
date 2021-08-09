@@ -1,29 +1,32 @@
-package com.controle;
+package controle;
 
-public class Main {
+import java.util.Scanner;
 
-    public static void main(String []args) {
+public class MainControle {
+
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String escolha = "";
+        Controle controle = new Controle();
+        String comando = "";
 
         while(true) {
-            escolha = menu(scanner);
-            gerenciadorDeComando();
+            comando = menu(scanner);
+            gerenciadorDeComando(comando, controle, scanner);
         }
     }
 
-    private static void menu(Scanner scanner) {
+    private static String menu(Scanner scanner) {
         System.out.println("(C)adastrar Aluno\n(E)xibir Aluno\n(N)ovo Grupo\n(A)locar Aluno no Grupo e Verificar pertinência a Grupos\n(R)egistrar Aluno que Respondeu\n(I)mprimir Alunos que Responderam\b(O)lhaí quais Grupos o Aluno Tá.\n(S)im, quero Fechar o Programa!\n\nOpção> ");
         return scanner.nextLine().toUpperCase();
     }
 
-    private void gerenciadorDeComando(String comando, Controle controle, Scanner scanner) {
-        switch (opcao) {
+    private static void gerenciadorDeComando(String comando, Controle controle, Scanner scanner) {
+        switch (comando) {
 			case "C":
 				System.out.println("Funcionalidade não implementada");
 				break;
 			case "E":
-            System.out.println("Funcionalidade não implementada");
+                System.out.println("Funcionalidade não implementada");
 				break;
 			case "N":
                 System.out.println("Funcionalidade não implementada");
@@ -46,6 +49,5 @@ public class Main {
 			default:
 				System.out.println("Opção inválida!");
 		}
-
     }
 }

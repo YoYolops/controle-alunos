@@ -1,4 +1,4 @@
-package com.controle;
+package controle;
 
 public class Aluno {
     private String nome;
@@ -7,11 +7,11 @@ public class Aluno {
 
     public Aluno(String nome, String matricula, String curso) {
         if(nome.trim() == "") {
-            throw IllegalArgumentException("Nome inválido");
+            throw new IllegalArgumentException("Nome inválido");
         } else if(matricula.trim() == "") {
-            throw IllegalArgumentException("Matrícula inválida");
+            throw new IllegalArgumentException("Matrícula inválida");
         } else if( curso.trim() == "") {
-            throw IllegalArgumentException("Curso inválido");
+            throw new IllegalArgumentException("Curso inválido");
         }
 
         this.nome = nome;
