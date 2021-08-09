@@ -8,9 +8,11 @@ public class Aluno {
     public Aluno(String nome, String matricula, String curso) {
         if(nome.trim() == "") {
             throw new IllegalArgumentException("Nome inválido");
-        } else if(matricula.trim() == "") {
+        }
+        if(matricula.trim() == "") {
             throw new IllegalArgumentException("Matrícula inválida");
-        } else if( curso.trim() == "") {
+        }
+        if( curso.trim() == "") {
             throw new IllegalArgumentException("Curso inválido");
         }
 
