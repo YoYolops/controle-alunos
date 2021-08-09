@@ -14,6 +14,14 @@ public class RepositorioAlunos {
         this.alunos.add(aluno);
     }
 
+    public Aluno getAluno(int index) {
+        return alunos.get(index);
+    }
+
+    public int matriculaEstaCadastrada(String matricula) {
+        return alunos.contains(matricula);
+    }
+
     /** 
      * Verifica se os dados inseridos são aceitáveis 
      */
