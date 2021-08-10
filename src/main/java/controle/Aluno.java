@@ -1,31 +1,33 @@
 package controle;
 
+import java.util.ArrayList;
+
 public class Aluno {
     private String nome;
     private String matricula;
     private String curso;
+    private ArrayList<String> grupos = new ArrayList<>();
 
-    public Aluno(String nome, String matricula, String curso) {
-        if(nome.trim() == "") {
+    public Aluno(String nomeAluno, String matriculaAluno, String cursoAluno) {
+        if(nomeAluno.trim() == "") {
             throw new IllegalArgumentException("Nome inválido");
         }
-        if(matricula.trim() == "") {
+        if(matriculaAluno.trim() == "") {
             throw new IllegalArgumentException("Matrícula inválida");
         }
-        if( curso.trim() == "") {
+        if(cursoAluno.trim() == "") {
             throw new IllegalArgumentException("Curso inválido");
         }
 
-        this.nome = nome;
-        this.matricula = matricula;
-        this.curso = curso;
+        this.nome = nomeAluno;
+        this.matricula = matriculaAluno;
+        this.curso = cursoAluno;
     }
 
-    public boolean equals(Object obj) {
-        Aluno aluno = (Aluno) obj;
-
-        if(this.matricula.equals(aluno.getMatricula())) { return true; }
-        return false;
+    public void adicionarGrupo(String nomeDoGrupo) {
+        if(!grupos.contains(nomeDoGrupo)) {
+            grupos.add(nomeDoGrupo);
+        }
     }
 
     public String getNome() {
@@ -38,6 +40,13 @@ public class Aluno {
 
     public String getMatricula() {
         return this.matricula;
+    }
+
+    public boolean equals(Object obj) {
+        Aluno aluno = (Aluno) obj;
+
+        if(this.matricula.equals(aluno.getMatricula())) { return true; }
+        return false;
     }
 
     public String toString() {
