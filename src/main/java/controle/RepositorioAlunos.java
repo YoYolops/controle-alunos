@@ -1,9 +1,10 @@
 package controle;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RepositorioAlunos {
-    private ArrayList<Aluno> alunos = new ArrayList<>();
+    private Map<String, Aluno> mapaAlunos = new HashMap<String, Aluno>();
 
     public void CadastrarAluno(String nome, String matricula, String curso) {
         if(!isValidAluno(nome, matricula, curso)) {
@@ -11,15 +12,11 @@ public class RepositorioAlunos {
         }
 
         Aluno aluno = new Aluno(nome, matricula, curso);
-        this.alunos.add(aluno);
+        this.mapaAlunos.put(matricula, aluno);
     }
 
-    public Aluno getAluno(int index) {
-        return alunos.get(index);
-    }
-
-    public int matriculaEstaCadastrada(String matricula) {
-        return alunos.indexOf(new Aluno("totodebabalong", matricula, "Moda"));
+    public Aluno getAluno(String matricula) {
+        return mapaAlunos.get(matricula);
     }
 
     /** 

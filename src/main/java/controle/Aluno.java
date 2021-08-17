@@ -30,6 +30,15 @@ public class Aluno {
         }
     }
 
+/*     public boolean alunoEstaNoGrupo(String nomeDoGrupo) {
+        for(String nome : grupos) {
+            if(nome.equals(nomeDoGrupo)) {
+                return true;
+            }
+        }
+        return false;
+    } */
+
     public String getNome() {
         return this.nome;
     }
@@ -42,14 +51,19 @@ public class Aluno {
         return this.matricula;
     }
 
-    public boolean equals(Object obj) {
+/*     public boolean equals(Object obj) {
         Aluno aluno = (Aluno) obj;
 
         if(this.matricula.equals(aluno.getMatricula())) { return true; }
         return false;
-    }
+    } */
 
     public String toString() {
         return "Aluno:" + " - "  + this.matricula + " - " + this.nome + " - " + this.curso;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.parseInt(this.matricula);
     }
 }
