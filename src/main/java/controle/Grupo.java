@@ -39,6 +39,8 @@ public class Grupo {
         if(alunoJaEstaNoGrupo(aluno)) { return true; }
         if(verificarNecessidadeDeExpansao()) { expandirMembros(); }
 
+        aluno.adicionarGrupo(this.nome);
+
         for(int i = 0; i < membros.length; i++) {
             if(membros[i] == null) {
                 membros[i] = aluno;

@@ -23,10 +23,10 @@ public class MainControle {
     private static void gerenciadorDeComando(String comando, Controle controle, Scanner scanner) {
         switch (comando) {
 			case "C":
-				System.out.println("Funcionalidade não implementada");
+				requisitarCadastroAluno(controle, scanner);
 				break;
 			case "E":
-                System.out.println("Funcionalidade não implementada");
+                exibirAluno(controle, scanner);
 				break;
 			case "N":
                 System.out.println("Funcionalidade não implementada");
@@ -49,5 +49,70 @@ public class MainControle {
 			default:
 				System.out.println("Opção inválida!");
 		}
+    }
+
+    private static void requisitarCadastroAluno(Controle controle, Scanner scanner) {
+        System.out.print("Matrícula: ");
+        String matricula = scanner.nextLine();
+        if("".equals(matricula.trim())) {
+            System.out.println("Número de matrícula inválido");
+            return;
+        }
+        if(controle.getAluno(matricula) != null) {
+            System.out.println("MATRÍCULA JÁ CADASTRADA!");
+        }
+
+        System.out.print("\nNome: ");
+        String nome = scanner.nextLine();
+        if("".equals(nome.trim())) {
+            System.out.println("Nome inválido");
+            return;
+        }
+
+        System.out.print("\nCurso: ");
+        String curso = scanner.nextLine();
+        if("".equals(curso.trim())) {
+            System.out.println("Curso inválido");
+            return;
+        }
+
+        controle.cadastrarAluno(nome, matricula, curso);
+    }
+
+    private static void exibirAluno(Controle controle, Scanner scanner) {
+        System.out.println("Matrícula: ");
+        String matricula = scanner.nextLine();
+        if("".equals(matricula.trim())) {
+            System.out.println("Matrícula inválida");
+            return;
+        }
+
+        Aluno resultadoDaBusca = controle.getAluno(matricula);
+        if(resultadoDaBusca == null) {
+            System.out.println("Aluno não cadastrado.");
+        } else {
+            System.out.println(resultadoDaBusca);
+        }
+    }
+
+    private static void requisitaCadastroDeGrupo(Controle controle, Scanner scanner) {
+        System.out.print("Grupo: ");
+        String nomeDoGrupo = scanner.nextLine();
+        if("".equals(nomeDoGrupo.trim())) {
+            System.out.println("Nome de grupo inválido");
+            return;
+        }
+        if(controle.getGrupoPeloNome(nomeDoGrupo) != null) {
+            System.out.println("GRUPO JÁ CADASTRADO!");
+            return;
+        }
+
+        System.out.print("Tamanho: ");
+        String tamanho = scanner.nextLine();
+        if(tamanho.trim() == "") { tamanho = null; }
+
+        controle.adicionarGrupo(nomeDoGrupo, tamanho);
+        System.out.println("CADASTRO REALIZADO!");
+
     }
 }
