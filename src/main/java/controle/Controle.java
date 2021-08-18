@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Gerencia, integra e interage com os objetos Aluno e Grupo.
+ * @author Yohan Lopes (https://github.com/YoYolops)
+ */
 public class Controle {
     private Map<String, Aluno> alunos = new HashMap<String, Aluno>();
     private ArrayList<Grupo> grupos = new ArrayList<>();
@@ -36,6 +40,7 @@ public class Controle {
         }
 
         Aluno aluno = new Aluno(nome, matricula, curso);
+        // Como HashMap não aceita keys duplicadas, não há a necessidade de verificar se a matrícula está cadastrada, os dados serão sobrescritos
         this.alunos.put(matricula, aluno);
     }
 
@@ -44,7 +49,7 @@ public class Controle {
     }
 
     /** 
-     * Verifica se os dados inseridos são aceitáveis 
+     * Verifica se os dados fornecidos são aceitáveis 
      */
     private boolean isValidAluno(String nome, String matricula, String curso) {
         if(nome.trim() == "" || curso.trim() == "") { return false; }

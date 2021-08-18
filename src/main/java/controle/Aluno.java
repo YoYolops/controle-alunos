@@ -2,10 +2,19 @@ package controle;
 
 import java.util.ArrayList;
 
+/**
+ * Entidade que representa um aluno, além de nome, matricula e curso, armazena também os
+ * nomes dos grupos no qual o aluno está cadastrado 
+ * 
+ * @author Yohan Lopes (https://github.com/YoYolops)
+ */
 public class Aluno {
     private String nome;
     private String matricula;
     private String curso;
+    /** 
+     * ArrayList com os nomes dos grupos nos quais o aluno está inscrito 
+     */
     private ArrayList<String> grupos = new ArrayList<>();
 
     public Aluno(String nomeAluno, String matriculaAluno, String cursoAluno) {
@@ -51,6 +60,9 @@ public class Aluno {
         return this.matricula;
     }
 
+    /** 
+     * Retorna os grupos dos quais o aluno faz parte, formatados no padrão exigido.
+     */  
     public String getGrupos() {
         String stringRetorno = "Grupos:\n";
 

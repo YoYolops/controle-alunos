@@ -1,14 +1,23 @@
 package controle;
 
+/**
+ * Entidade que representa um Grupo de estudos. Armazena o nome o grupo e seus membros
+ * @author Yohan Lopes (https://github.com/YoYolops)
+ */
 public class Grupo {
     private String nome;
     private Aluno[] membros;
+    /** 
+     * O grupo possui um limite de estudantes ou não? é isso que tamanhoFixo representa
+     */
+    private boolean tamanhoFixo;
 
     public Grupo(String nomeDoGrupo) {
         if(nomeDoGrupo.trim() == "") { throw new IllegalArgumentException("Nome inválido"); }
 
         this.nome = nomeDoGrupo.toUpperCase();
         this.membros = new Aluno[10];
+        this.tamanhoFixo = false;
     }
 
     public Grupo(String nomeDoGrupo, int tamanhoDoGrupo) {
@@ -17,15 +26,25 @@ public class Grupo {
 
         this.nome = nomeDoGrupo.toUpperCase();
         this.membros = new Aluno[tamanhoDoGrupo];
+        this.tamanhoFixo = true;
     }
 
-    private boolean verificarNecessidadeDeExpansao() {
+    /** 
+     * Por ter adotado um array como estrutura de dados padrão, verifica se a lotação
+     * máxima do array foi atingida.
+     * @return booleano true caso o array de alunos esteja lotado, false caso contrário
+     */
+    private boolean estaLotado() {
         for(Aluno aluno : membros) {
             if(aluno == null) { return false; } 
         }
         return true;
     }
 
+    /** 
+     * Expande o array de alunos para que mais possam ser adicionados. Só é executada
+     * quando um número máximo para quantidade de alunos não é especificado
+     */
     private void expandirMembros() {
         Aluno[] novoArray = new Aluno[this.membros.length + 10];
 
@@ -37,7 +56,7 @@ public class Grupo {
 
     public boolean adicionarAluno(Aluno aluno) {
         if(alunoJaEstaNoGrupo(aluno)) { return true; }
-        if(verificarNecessidadeDeExpansao()) { expandirMembros(); }
+        if(!this.tamanhoFixo && estaLotado()) { expandirMembros(); }
 
         aluno.adicionarGrupo(this.nome);
 
