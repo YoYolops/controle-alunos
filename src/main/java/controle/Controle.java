@@ -47,7 +47,7 @@ public class Controle {
      * Verifica se os dados inseridos são aceitáveis 
      */
     private boolean isValidAluno(String nome, String matricula, String curso) {
-        if(nome.trim() == "" || matricula.trim() == "" || curso.trim() == "") { return false; }
+        if(nome.trim() == "" || curso.trim() == "") { return false; }
         return true;
     }
 }

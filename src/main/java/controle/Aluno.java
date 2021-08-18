@@ -51,6 +51,15 @@ public class Aluno {
         return this.matricula;
     }
 
+    public String getGrupos() {
+        String stringRetorno = "Grupos:\n";
+
+        for(String grupo : grupos) {
+            stringRetorno += ("- " + grupo + "\n");
+        }
+        return stringRetorno;
+    }
+
 /*     public boolean equals(Object obj) {
         Aluno aluno = (Aluno) obj;
 

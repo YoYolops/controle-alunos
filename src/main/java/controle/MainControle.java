@@ -29,7 +29,7 @@ public class MainControle {
                 exibirAluno(controle, scanner);
 				break;
 			case "N":
-                System.out.println("Funcionalidade não implementada");
+                requisitaCadastroDeGrupo(controle, scanner);
 				break;
 			case "A":
                 System.out.println("Funcionalidade não implementada");
@@ -41,10 +41,10 @@ public class MainControle {
                 System.out.println("Funcionalidade não implementada");
 				break;
 			case "O":
-                System.out.println("Funcionalidade não implementada");
+                participaDeQueGrupos(controle, scanner);
 				break;
             case "S":
-                System.out.println("Funcionalidade não implementada");
+                fecharAplicacao();
                 break;
 			default:
 				System.out.println("Opção inválida!");
@@ -114,5 +114,23 @@ public class MainControle {
         controle.adicionarGrupo(nomeDoGrupo, tamanho);
         System.out.println("CADASTRO REALIZADO!");
 
+    }
+
+    private static void participaDeQueGrupos(Controle controle, Scanner scanner) {
+        System.out.print("Aluno: ");
+        String matricula = scanner.nextLine();
+        if("".equals(matricula.trim())) {
+            System.out.println("Matrícula Inválida");
+            return;
+        }
+
+        Aluno aluno = controle.getAluno(matricula);
+        String gruposQueParticipa = aluno.getGrupos();
+        System.out.println(gruposQueParticipa);
+    }
+
+    private static void fecharAplicacao() {
+        System.out.println("Xauuu!!!");
+        System.exit(0);
     }
 }
