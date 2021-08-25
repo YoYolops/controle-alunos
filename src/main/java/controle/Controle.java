@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.ws.rs.core.Response.ResponseBuilder;
-
 /**
  * Gerencia, integra e interage com os objetos Aluno e Grupo.
  * @author Yohan Lopes (https://github.com/YoYolops)
@@ -15,6 +13,9 @@ public class Controle {
     private ArrayList<Grupo> grupos = new ArrayList<>();
     private ArrayList<String> respondentes = new ArrayList<>();
 
+    /**
+     * Cria um novo grupo e adiciona ele ao registro
+     */
     public void adicionarGrupo(String nomeDoGrupo, String tamanhoDoGrupo) {
         Grupo novoGrupo;
 
@@ -27,6 +28,10 @@ public class Controle {
         grupos.add(novoGrupo);
     }
 
+    /**
+     * Procura um grupo pelo nome cadastrado no registro mantido
+     * @return o objeto encontrado, null caso não haja correspondências
+     */
     public Grupo getGrupoPeloNome(String nomeDoGrupo) {
         for(Grupo grupo : grupos) {
             if(nomeDoGrupo.toUpperCase().equals(grupo.getNome())) {
@@ -51,6 +56,11 @@ public class Controle {
         return alunos.get(matricula);
     }
 
+    /**
+     * Coleta o aluno portador da matrícula específicada e o aloca dentro do grupo específicado
+     * @param matricula A matrícula do aluno que será alocado
+     * @param nomeDoGrupo O nome do grupo cadastrado
+     */
     public void alocarAlunoEmGrupo(String matricula, String nomeDoGrupo) {
         Aluno aluno = this.getAluno(matricula);
         Grupo grupo = this.getGrupoPeloNome(nomeDoGrupo);
@@ -60,6 +70,11 @@ public class Controle {
         grupo.adicionarAluno(aluno);
     }
 
+    /**
+     * Verifica se um dado aluno já está cadastrado dentro de um grupo
+     * @param matricula a matricula do aluno que será verificado
+     * @param nomeDoGrupo autoexplicativo
+     */
     public boolean verificarPertinenciaAGrupo(String matricula, String nomeDoGrupo) {
         Grupo grupo = this.getGrupoPeloNome(nomeDoGrupo);
         if(grupo == null) { throw new IllegalArgumentException("Grupo inválido"); }
@@ -70,12 +85,19 @@ public class Controle {
         return !grupo.alunoJaEstaNoGrupo(aluno);
     }
 
+    /**
+     * Adiciona um aluno à lista de respondentes
+     */
     public void adicionarRespondente(String matricula) {
         if(this.getAluno(matricula) == null) { throw new IllegalArgumentException("Matrícula inexistente"); }
 
         this.respondentes.add(matricula);
     }
 
+    /**
+     * Cria uma lista de todos os alunos que responderam perguntas dentro de um formato específico
+     * @return A String da lista de alunos respondentes formatada
+     */
     public String gerarRelatorioDeRespondentes() {
         String acumulado = "";
 

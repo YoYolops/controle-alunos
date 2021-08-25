@@ -12,6 +12,9 @@ public class Grupo {
      */
     private boolean tamanhoFixo;
 
+    /**
+     * Gerencia a criação do objeto quando o t grupo não possui tamanho limite
+     */
     public Grupo(String nomeDoGrupo) {
         if(nomeDoGrupo.trim() == "") { throw new IllegalArgumentException("Nome inválido"); }
 
@@ -20,6 +23,9 @@ public class Grupo {
         this.tamanhoFixo = false;
     }
 
+    /**
+     * Gerencia a criação do objeto quando o grupo possui um tamanho máximo
+     */
     public Grupo(String nomeDoGrupo, int tamanhoDoGrupo) {
         if(tamanhoDoGrupo < 2) { throw new IllegalArgumentException("Tamanho inválido"); }
         if(nomeDoGrupo.trim() == "") { throw new IllegalArgumentException("Nome inválido"); }
@@ -69,6 +75,10 @@ public class Grupo {
         return false; // só retorna false quando o grupo já está cheio
     }
 
+    /**
+     * Verifica se um aluno já está cadastrado no grupo
+     * @return true caso esteja, falso caso contrário
+     */
     public boolean alunoJaEstaNoGrupo(Aluno aluno) {
         String matriculaDoAluno = aluno.getMatricula();
 

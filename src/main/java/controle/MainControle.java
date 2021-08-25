@@ -16,7 +16,7 @@ public class MainControle {
     }
 
     private static String menu(Scanner scanner) {
-        System.out.println("(C)adastrar Aluno\n(E)xibir Aluno\n(N)ovo Grupo\n(A)locar Aluno no Grupo e Verificar pertinência a Grupos\n(R)egistrar Aluno que Respondeu\n(I)mprimir Alunos que Responderam\b(O)lhaí quais Grupos o Aluno Tá.\n(S)im, quero Fechar o Programa!\n\nOpção> ");
+        System.out.print("\n(C)adastrar Aluno\n(E)xibir Aluno\n(N)ovo Grupo\n(A)locar Aluno no Grupo e Verificar pertinência a Grupos\n(R)egistrar Aluno que Respondeu\n(I)mprimir Alunos que Responderam\n(O)lhaí quais Grupos o Aluno Tá.\n(S)im, quero Fechar o Programa!\n\nOpção> ");
         return scanner.nextLine().toUpperCase();
     }
 
@@ -72,15 +72,16 @@ public class MainControle {
         System.out.print("\nCurso: ");
         String curso = scanner.nextLine();
         if("".equals(curso.trim())) {
-            System.out.println("Curso inválido");
+            System.out.print("\nCurso inválido");
             return;
         }
 
         controle.cadastrarAluno(nome, matricula, curso);
+        System.out.print("\nCADASTRO REALIZADO!");
     }
 
     private static void exibirAluno(Controle controle, Scanner scanner) {
-        System.out.println("Matrícula: ");
+        System.out.print("\nMatrícula: ");
         String matricula = scanner.nextLine();
         if(!validarMatricula(matricula, controle)) { return; }
 
@@ -89,14 +90,14 @@ public class MainControle {
     }
 
     private static void requisitaCadastroDeGrupo(Controle controle, Scanner scanner) {
-        System.out.print("Grupo: ");
+        System.out.print("\nGrupo: ");
         String nomeDoGrupo = scanner.nextLine();
         if("".equals(nomeDoGrupo.trim())) {
             System.out.println("Nome de grupo inválido");
             return;
         }
         if(controle.getGrupoPeloNome(nomeDoGrupo) != null) {
-            System.out.println("GRUPO JÁ CADASTRADO!");
+            System.out.print("\nGRUPO JÁ CADASTRADO!");
             return;
         }
 
@@ -105,7 +106,7 @@ public class MainControle {
         if(tamanho.trim() == "") { tamanho = null; }
 
         controle.adicionarGrupo(nomeDoGrupo, tamanho);
-        System.out.println("CADASTRO REALIZADO!");
+        System.out.print("\nCADASTRO REALIZADO!");
 
     }
 
@@ -116,91 +117,93 @@ public class MainControle {
 
         Aluno aluno = controle.getAluno(matricula);
         String gruposQueParticipa = aluno.getGrupos();
-        System.out.println(gruposQueParticipa);
+        System.out.print("\n"+gruposQueParticipa);
     }
 
     private static void gerenciadorDePedidoDeAlocacao(Controle controle, Scanner scanner) {
-        System.out.print("(A)locar Aluno ou (P)ertinência a Grupo? ");
+        System.out.print("\n(A)locar Aluno ou (P)ertinência a Grupo? ");
         String comando = scanner.nextLine().trim().toUpperCase();
 
         switch(comando) {
             case "A":
                 alocarAlunoEmGrupo(controle, scanner);
+                break;
             case "P":
                 pertinenciaAGrupo(controle, scanner);
+                break;
             default:
                 System.out.println("Opção inválida");
         }
     }
 
     private static void pertinenciaAGrupo(Controle controle, Scanner scanner) {
-        System.out.print("Matrícula: ");
+        System.out.print("\nMatrícula: ");
         String matricula = scanner.nextLine();
         if(!validarMatricula(matricula, controle)) { return; }
 
         String nomeDoGrupo = scanner.nextLine();
         if("".equals(nomeDoGrupo.trim())) {
-            System.out.println("Nome de grupo inválido");
+            System.out.print("\nNome de grupo inválido");
             return;
         }
         if(controle.getGrupoPeloNome(nomeDoGrupo) == null) {
-            System.out.println("Grupo não existe");
+            System.out.print("\nGrupo não existe");
             return;
         }
 
         if(controle.verificarPertinenciaAGrupo(matricula, nomeDoGrupo)) {
-            System.out.println("ALUNO NÃO PERTECENTE AO GRUPO");
+            System.out.print("\nALUNO NÃO PERTECENTE AO GRUPO");
         } else {
-            System.out.println("ALUNO PERTENCE AO GRUPO");
+            System.out.print("\nALUNO PERTENCE AO GRUPO");
         }
     }
 
     private static void alocarAlunoEmGrupo(Controle controle, Scanner scanner) {
-        System.out.print("Matrícula: ");
+        System.out.print("\nMatrícula: ");
         String matricula = scanner.nextLine();
         if(!validarMatricula(matricula, controle)) { return; }
         
-        System.out.print("Grupo: ");
+        System.out.print("\nGrupo: ");
         String nomeDoGrupo = scanner.nextLine();
         if("".equals(nomeDoGrupo.trim())) {
-            System.out.println("Nome de grupo inválido");
+            System.out.print("\nNome de grupo inválido");
             return;
         }
         if(controle.getGrupoPeloNome(nomeDoGrupo) == null) {
-            System.out.println("Grupo não existe");
+            System.out.print("\nGrupo não existe");
             return;
         }
 
         controle.alocarAlunoEmGrupo(matricula, nomeDoGrupo);
-        System.out.println("ALUNO ALOCADO!");
+        System.out.print("\nALUNO ALOCADO!");
     }
 
     private static void adicionarAlunoRespondente(Controle controle, Scanner scanner) {
-        System.out.println("Matrícula: ");
+        System.out.print("\nMatrícula: ");
         String matricula = scanner.nextLine();
         if(!validarMatricula(matricula, controle)) { return; }
 
         controle.adicionarRespondente(matricula);
-        System.out.println("ALUNO REGISTRADO!");
+        System.out.print("\nALUNO REGISTRADO!");
     }
 
     private static void exibirAlunosRespondentes(Controle controle) {
         String respondentes = controle.gerarRelatorioDeRespondentes();
-        System.out.println(respondentes);
+        System.out.print("\n" + respondentes);
     }
 
     private static void fecharAplicacao() {
-        System.out.println("Xauuu!!!");
+        System.out.print("\nXauuu!!!\n");
         System.exit(0);
     }
 
     private static boolean validarMatricula(String matricula, Controle controle) {
         if("".equals(matricula.trim())) {
-            System.out.println("Matrícula inválida");
+            System.out.print("\nMatrícula inválida");
             return false;
         }
         if(controle.getAluno(matricula) == null) {
-            System.out.println("Matrícula não existe");
+            System.out.print("\nMatrícula não existe");
             return false;
         }
 
