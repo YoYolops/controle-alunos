@@ -79,8 +79,9 @@ public class Aluno {
         return false;
     } */
 
+    @Override
     public String toString() {
-        return "Aluno:" + " - "  + this.matricula + " - " + this.nome + " - " + this.curso;
+        return this.matricula + " - " + this.nome + " - " + this.curso;
     }
 
     @Override
