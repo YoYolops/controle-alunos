@@ -34,6 +34,10 @@ public class Aluno {
     }
 
     public void adicionarGrupo(String nomeDoGrupo) {
+        if(nomeDoGrupo.trim().equals("")) {
+            throw new IllegalArgumentException("Nome de grupo vazio");
+        }
+
         if(!grupos.contains(nomeDoGrupo)) {
             grupos.add(nomeDoGrupo);
         }

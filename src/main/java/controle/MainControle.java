@@ -103,13 +103,16 @@ public class MainControle {
 
         System.out.print("Tamanho: ");
         String tamanho = scanner.nextLine();
-        if(tamanho.trim() == "") { tamanho = null; }
+        if(tamanho.trim().equals("")) { tamanho = null; }
 
         controle.adicionarGrupo(nomeDoGrupo, tamanho);
         System.out.print("\nCADASTRO REALIZADO!");
 
     }
 
+    /** 
+     * Verifica e exibe de que grupos um aluno participa
+     */
     private static void participaDeQueGrupos(Controle controle, Scanner scanner) {
         System.out.print("Aluno: ");
         String matricula = scanner.nextLine();
@@ -120,6 +123,10 @@ public class MainControle {
         System.out.print("\n"+gruposQueParticipa);
     }
 
+    /** 
+     * Exibe um menu filho quando a opção A é selecionada, para definir melhor qual
+     * a vontade do usuário
+     */
     private static void gerenciadorDePedidoDeAlocacao(Controle controle, Scanner scanner) {
         System.out.print("\n(A)locar Aluno ou (P)ertinência a Grupo? ");
         String comando = scanner.nextLine().trim().toUpperCase();
@@ -136,6 +143,9 @@ public class MainControle {
         }
     }
 
+    /** 
+     * Verifica se o aluno já está cadastrado no grupo inserido
+     */
     private static void pertinenciaAGrupo(Controle controle, Scanner scanner) {
         System.out.print("\nMatrícula: ");
         String matricula = scanner.nextLine();
@@ -158,6 +168,7 @@ public class MainControle {
         }
     }
 
+
     private static void alocarAlunoEmGrupo(Controle controle, Scanner scanner) {
         System.out.print("\nMatrícula: ");
         String matricula = scanner.nextLine();
@@ -178,6 +189,9 @@ public class MainControle {
         System.out.print("\nALUNO ALOCADO!");
     }
 
+    /** 
+     * Adiciona um aluno que respondeu ao registro do Controle 
+     */
     private static void adicionarAlunoRespondente(Controle controle, Scanner scanner) {
         System.out.print("\nMatrícula: ");
         String matricula = scanner.nextLine();
@@ -197,6 +211,9 @@ public class MainControle {
         System.exit(0);
     }
 
+    /** 
+     * Verifica se a matricula inserida é válida ou se já existe
+     */
     private static boolean validarMatricula(String matricula, Controle controle) {
         if("".equals(matricula.trim())) {
             System.out.print("\nMatrícula inválida");
