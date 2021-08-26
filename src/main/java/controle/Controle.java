@@ -19,6 +19,9 @@ public class Controle {
     public void adicionarGrupo(String nomeDoGrupo, String tamanhoDoGrupo) {
         Grupo novoGrupo;
 
+        if(nomeDoGrupo.trim().equals("")) { throw new IllegalArgumentException("Nome inválido"); }
+        if(nomeDoGrupo.trim().equals("")) { throw new IllegalArgumentException("Nome inválido"); }
+
         if(tamanhoDoGrupo == null) {
             novoGrupo = new Grupo(nomeDoGrupo);
         } else {
@@ -34,7 +37,7 @@ public class Controle {
      */
     public Grupo getGrupoPeloNome(String nomeDoGrupo) {
         for(Grupo grupo : grupos) {
-            if(nomeDoGrupo.toUpperCase().equals(grupo.getNome())) {
+            if(nomeDoGrupo.equals(grupo.getNome())) {
                 return grupo;
             }
         }

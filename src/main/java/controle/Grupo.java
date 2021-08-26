@@ -18,7 +18,7 @@ public class Grupo {
     public Grupo(String nomeDoGrupo) {
         if(nomeDoGrupo.trim() == "") { throw new IllegalArgumentException("Nome inválido"); }
 
-        this.nome = nomeDoGrupo.toUpperCase();
+        this.nome = nomeDoGrupo;
         this.membros = new Aluno[10];
         this.tamanhoFixo = false;
     }
@@ -30,7 +30,7 @@ public class Grupo {
         if(tamanhoDoGrupo < 2) { throw new IllegalArgumentException("Tamanho inválido"); }
         if(nomeDoGrupo.trim() == "") { throw new IllegalArgumentException("Nome inválido"); }
 
-        this.nome = nomeDoGrupo.toUpperCase();
+        this.nome = nomeDoGrupo;
         this.membros = new Aluno[tamanhoDoGrupo];
         this.tamanhoFixo = true;
     }
