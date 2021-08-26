@@ -61,14 +61,17 @@ public class Grupo {
     }
 
     public boolean adicionarAluno(Aluno aluno) {
-        if(alunoJaEstaNoGrupo(aluno)) { return true; }
-        if(!this.tamanhoFixo && estaLotado()) { expandirMembros(); }
+        boolean lotacaoMaxima = estaLotado();
+        System.out.println("lotacao maxima? " + lotacaoMaxima);
+        System.out.println("tamanho fixo? " + this.tamanhoFixo);
 
-        aluno.adicionarGrupo(this.nome);
+        if(alunoJaEstaNoGrupo(aluno)) { return true; }
+        if(!this.tamanhoFixo && lotacaoMaxima) { expandirMembros(); }
 
         for(int i = 0; i < membros.length; i++) {
             if(membros[i] == null) {
                 membros[i] = aluno;
+                aluno.adicionarGrupo(this.nome);
                 return true;
             }
         }
@@ -93,5 +96,15 @@ public class Grupo {
 
     public String getNome() {
         return this.nome;
+    }
+
+    public String getMembros() {
+        String membros = "";
+
+        for(int i = 0; i < this.membros.length; i++) {
+            if(this.membros[i] != null) { membros += (this.membros[i] + "\n"); }
+        }
+
+        return membros;
     }
 }

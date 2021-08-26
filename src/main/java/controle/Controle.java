@@ -61,13 +61,13 @@ public class Controle {
      * @param matricula A matrícula do aluno que será alocado
      * @param nomeDoGrupo O nome do grupo cadastrado
      */
-    public void alocarAlunoEmGrupo(String matricula, String nomeDoGrupo) {
+    public boolean alocarAlunoEmGrupo(String matricula, String nomeDoGrupo) {
         Aluno aluno = this.getAluno(matricula);
         Grupo grupo = this.getGrupoPeloNome(nomeDoGrupo);
         if(aluno == null) { throw new IllegalArgumentException("Matrícula inexistente"); }
         if(grupo == null) { throw new IllegalArgumentException("Grupo inexistente"); }
 
-        grupo.adicionarAluno(aluno);
+        return grupo.adicionarAluno(aluno);
     }
 
     /**

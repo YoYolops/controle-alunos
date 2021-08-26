@@ -185,8 +185,9 @@ public class MainControle {
             return;
         }
 
-        controle.alocarAlunoEmGrupo(matricula, nomeDoGrupo);
-        System.out.print("\nALUNO ALOCADO!");
+        boolean resultado = controle.alocarAlunoEmGrupo(matricula, nomeDoGrupo);
+        if(resultado) { System.out.print("\nALUNO ALOCADO!"); }
+        else { System.out.print("\nGRUPO CHEIO"); }
     }
 
     /** 
