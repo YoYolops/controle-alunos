@@ -62,8 +62,6 @@ public class Grupo {
 
     public boolean adicionarAluno(Aluno aluno) {
         boolean lotacaoMaxima = estaLotado();
-        System.out.println("lotacao maxima? " + lotacaoMaxima);
-        System.out.println("tamanho fixo? " + this.tamanhoFixo);
 
         if(alunoJaEstaNoGrupo(aluno)) { return true; }
         if(!this.tamanhoFixo && lotacaoMaxima) { expandirMembros(); }
