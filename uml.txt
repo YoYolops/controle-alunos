@@ -1,0 +1,102 @@
+Main
+composes Menu
+---
+---
+---
+
+
+
+Menu
+composes FacadeController
+---
+---
++ imprimirMenu(): str
++ handleInput(input: str): void
+---
+
+
+
+
+
+FacadeController
+composes RespondentesRepository
+composes GruposRepository
+composes AlunosRepository
+---
+- gruposRepository: GruposRepository
+- alunosRepository: AlunosRepository
+---
++ cadastrarAluno(nome: str, matricula: str, curso: str): void
++ consultarAluno(matricula: str): void
++ cadastrarGrupo(nome: str, tamanho: int): void
++ alocarAlunoEmGrupo(matricula: stre, nomeGrupo: str): void
++ verificarPertinenciaAGrupo(matricula: str, nomeGrupo: str): void
++ cadastrarRespondente(matricula: str): void
++ imprimirRespondentes(): void
++ getGruposDoQualPaarticipa(matriculaAluno: str): void
++ imprimirEstatisticasDosRespondentes(): void
+---
+
+
+
+RespondentesRepository
+aggregates Aluno
+---
+- respondentes: Aluno[]
+---
+- getAlunoMaisChamado(): str
+- getQuantidadeAlunosChamadosPorCurso(): str
+- getAlunosNuncaChamados(): str
++ registrarRespondente(aluno: Aluno): void
++ getEstatisticas(): String
+---
+
+
+
+
+GruposRepository
+composes Grupo
+---
+- grupos: Grupo[]
+---
++ alocarAlunoEmGrupo(aluno: Aluno): void
++ isAlunoPertencenteAoGrupo(grupo: Grupo, aluno: Aluno): boolean
+---
+
+
+
+
+AlunosRepository
+composes Aluno
+---
+- alunos: Aluno[]
+---
++ cadastrarAluno(matricula: str, nome: str, curso: str): void
++ isAlunoCadastrado(matricula: str): boolean
+---
+
+
+
+Aluno
+---
+- matricula: str
+- nome: str
+- curso: str
+---
++ Aluno(matricula: str, nome: str, curso: str): void
++ toString(): str
+---
+
+
+
+
+Grupo
+aggregates Aluno
+---
+- nome: str
+- tamanho: int
+- membros: Aluno[tamanho]
+---
++ Grupo(nome: str, tamanho: int): void
++ adicionarAluno(aluno: Aluno): void
+---
