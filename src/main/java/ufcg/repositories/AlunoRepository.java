@@ -11,7 +11,8 @@ public class AlunoRepository {
         this.alunos = new ArrayList<Aluno>(null);
     }
 
-    public void cadastrarAluno(String nome, String matricula, String curso) {
+    public void cadastrarAluno(String nome, String matricula, String curso) throws Exception {
+        if(this.isAlunoCadastrado(matricula)) throw new Exception("Matrícula já cadastrada!");
         Aluno novoALuno = new Aluno(matricula, curso, nome);
         alunos.add(novoALuno);
     }
@@ -21,5 +22,16 @@ public class AlunoRepository {
             if(aluno.getMatricula().equals(matricula)) return true;
         }
         return false;
+    }
+
+    public Aluno getAluno(String matricula) {
+        for(Aluno aluno : alunos) {
+            if(aluno.getMatricula().equals(matricula)) return aluno;
+        }
+        return null;
+    }
+
+    public List<Aluno> getTodosAlunosCadastrados() {
+        return this.alunos;
     }
 }

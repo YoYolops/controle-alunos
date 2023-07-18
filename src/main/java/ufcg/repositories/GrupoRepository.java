@@ -12,12 +12,14 @@ public class GrupoRepository {
         this.grupos = new ArrayList<Grupo>(null);
     }
 
-    public void cadastrarGrupo(String nome, int tamanho) {
+    public void cadastrarGrupo(String nome, int tamanho) throws Exception {
+        if(this.getGrupo(nome) != null) throw new Exception("Grupo já cadastrado");
         Grupo novoGrupo = new Grupo(nome, tamanho);
         grupos.add(novoGrupo);
     }
 
-    public void cadastrarGrupo(String nome) {
+    public void cadastrarGrupo(String nome) throws Exception {
+        if(this.getGrupo(nome) != null) throw new Exception("Grupo já cadastrado");
         Grupo novoGrupo = new Grupo(nome);
         grupos.add(novoGrupo);
     }
@@ -27,6 +29,14 @@ public class GrupoRepository {
 
         if(grupoSelecionado == null) throw new Exception("Grupo não cadastrado");
         else grupoSelecionado.adicionarAluno(aluno);
+    }
+
+    public List<Grupo> getGruposDoQualFazParte(Aluno aluno) {
+        List<Grupo> gruposDoQualFazParte = new ArrayList<Grupo>();
+        for(Grupo grupo : grupos) {
+            if(grupo.isAlunoEmGrupo(aluno)) gruposDoQualFazParte.add(grupo);
+        }
+        return gruposDoQualFazParte;
     }
 
     public Grupo getGrupo(String nomeDoGrupo) {

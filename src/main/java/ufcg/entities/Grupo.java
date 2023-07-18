@@ -28,6 +28,11 @@ public class Grupo {
         }
     }
 
+    public boolean isAlunoEmGrupo(Aluno aluno) {
+        for(Aluno al : membros) if(aluno.getMatricula().equals(al.getMatricula())) return true;
+        return false;
+    }
+
     public String getNome() {
         return this.nome;
     }
