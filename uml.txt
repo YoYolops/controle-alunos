@@ -25,6 +25,7 @@ composes AlunosRepository
 ---
 - gruposRepository: GruposRepository
 - alunosRepository: AlunosRepository
+- respondentesRepository: RespondenteRepository
 ---
 + cadastrarAluno(nome: str, matricula: str, curso: str): void
 + consultarAluno(matricula: str): void
@@ -42,13 +43,15 @@ composes AlunosRepository
 RespondentesRepository
 aggregates Aluno
 ---
-- respondentes: Aluno[]
+- respondentes: Map<Aluno, Integer>
+- registroDeOrdem: List<Aluno>
 ---
-- getAlunoMaisChamado(): str
-- getQuantidadeAlunosChamadosPorCurso(): str
-- getAlunosNuncaChamados(): str
+- getAlunoMaisChamado(): Map<Aluno Integer>
+- getQuantidadeAlunosChamadosPorCurso(): Map<str, int>
+- getAlunosNuncaChamados(): List<Aluno>
 + registrarRespondente(aluno: Aluno): void
-+ getEstatisticas(): String
++ getRelatorioEstatisticas(): String
++ getRegistroRespondentes(): List<Aluno>
 ---
 
 
@@ -59,8 +62,10 @@ composes Grupo
 ---
 - grupos: Grupo[]
 ---
-+ alocarAlunoEmGrupo(aluno: Aluno): void
-+ isAlunoPertencenteAoGrupo(grupo: Grupo, aluno: Aluno): boolean
++ alocarAlunoEmGrupo(aluno: Aluno, nomeGrupo: str): void
++ cadastrarGrupo(nome: str): void
++ cadastrarGrupo(nome: str, tamanho: int): void
++ getGruposDoQualFazParte(aluno: Aluno): List<Grupo>
 ---
 
 
@@ -73,6 +78,7 @@ composes Aluno
 ---
 + cadastrarAluno(matricula: str, nome: str, curso: str): void
 + isAlunoCadastrado(matricula: str): boolean
++ getAluno(matricula: str): Aluno
 ---
 
 
@@ -83,8 +89,9 @@ Aluno
 - nome: str
 - curso: str
 ---
-+ Aluno(matricula: str, nome: str, curso: str): void
++ Aluno()
 + toString(): str
++ getMatricula(): str
 ---
 
 
@@ -97,6 +104,5 @@ aggregates Aluno
 - tamanho: int
 - membros: Aluno[tamanho]
 ---
-+ Grupo(nome: str, tamanho: int): void
 + adicionarAluno(aluno: Aluno): void
 ---

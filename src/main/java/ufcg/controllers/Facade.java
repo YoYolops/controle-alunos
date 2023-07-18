@@ -24,10 +24,10 @@ public class Facade {
         System.out.print("\nMatrícula: ");
         String matricula = sc.next();
 
-        System.out.println("\nNome: ");
+        System.out.print("\nNome: ");
         String nome = sc.next();
 
-        System.out.println("\nCurso: ");
+        System.out.print("\nCurso: ");
         String curso = sc.next();
 
         repositorioAlunos.cadastrarAluno(nome, matricula, curso);
