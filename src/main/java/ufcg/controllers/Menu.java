@@ -43,7 +43,7 @@ public class Menu {
                 case "i": System.out.println("Funcionalidade ainda não implementada");break;
                 case "o": System.out.println("Funcionalidade ainda não implementada");break;
                 case "s": System.out.println("Funcionalidade ainda não implementada");break;
-                default: break;
+                default: System.out.println("Opção inválida"); break;
             }
         } catch (Exception error) {
             System.out.println(error.getMessage());

@@ -9,7 +9,7 @@ public class GrupoRepository {
     List<Grupo> grupos;
 
     public GrupoRepository() {
-        this.grupos = new ArrayList<Grupo>(null);
+        this.grupos = new ArrayList<Grupo>();
     }
 
     public void cadastrarGrupo(String nome, int tamanho) throws Exception {

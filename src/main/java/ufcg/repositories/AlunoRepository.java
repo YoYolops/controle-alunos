@@ -8,7 +8,7 @@ public class AlunoRepository {
     List<Aluno> alunos;
 
     public AlunoRepository() {
-        this.alunos = new ArrayList<Aluno>(null);
+        this.alunos = new ArrayList<Aluno>();
     }
 
     public void cadastrarAluno(String nome, String matricula, String curso) throws Exception {
