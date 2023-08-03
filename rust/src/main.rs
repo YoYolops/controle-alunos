@@ -1,16 +1,23 @@
-use repositories::alunos::RepositorioAlunos;
-
-use crate::repositories::alunos;
-
-pub mod repositories;
-pub mod utils;
+mod facade;
+mod repositories;
+mod utils;
 mod models;
+mod errors;
+
+use crate::utils::io;
 
 fn main() {
-    let mut alunos: RepositorioAlunos = alunos::RepositorioAlunos::new();
-    alunos.listar_alunos();
-    alunos.cadastrar_aluno(String::from("250B"), String::from("Yohan Lopes Rodrigues"), String::from("Ciências da Computação"));
-    alunos.cadastrar_aluno(String::from("250B"), String::from("Yohan Lopes Rodrigues"), String::from("Ciências da Computação"));
-    alunos.cadastrar_aluno(String::from("250B"), String::from("Yohan Lopes Rodrigues"), String::from("Ciências da Computação"));
-    alunos.listar_alunos();
+    let mut user_option: String = String::from("");
+    
+    while user_option.to_lowercase() != "s" {
+        io::print_menu();
+        user_option = io::input();
+
+        match user_option.as_str().trim() {
+            "c" => println!("You chose a"),
+            _ => println!("I just do not know what is happening")
+        }
+    }
+
+    println!("Goodbye and thanks for the fish!!!");
 }

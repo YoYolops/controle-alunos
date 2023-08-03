@@ -1,4 +1,5 @@
 use crate::models::aluno::Aluno;
+use crate::errors::parameters::InvalidParameters;
 
 pub struct RepositorioAlunos {
     alunos: Vec<Aluno>
@@ -11,12 +12,14 @@ impl RepositorioAlunos {
         }
     }
 
-    pub fn cadastrar_aluno(&mut self, imatricula: String, inome: String, icurso: String) {
+    pub fn cadastrar_aluno(&mut self, imatricula: String, inome: String, icurso: String) -> Result<(), InvalidParameters> {
         if self.aluno_already_registered(&imatricula) {
-
+            return Err(InvalidParameters::AlreadyRegisteredStudent);
         }
 
-        self.alunos.push(Aluno::new(inome, imatricula, icurso))
+        let novo_aluno = Aluno::new(inome, imatricula, icurso);
+        self.alunos.push(novo_aluno);
+        Ok(())
     }
 
     pub fn listar_alunos(&self) {
