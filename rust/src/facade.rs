@@ -13,7 +13,7 @@ impl Facade {
         Facade {repositorio_alunos: RepositorioAlunos::new()}
     }
 
-    pub fn cadastrar_aluno(&mut self) -> Result<(), InvalidParameters> {
+    pub const fn cadastrar_aluno(&mut self) -> Result<(), InvalidParameters> {
         print!("Matrícula: "); io::flush_stdout_buffer();
         let matricula: String = io::input();
     

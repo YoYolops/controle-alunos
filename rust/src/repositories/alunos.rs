@@ -6,7 +6,7 @@ pub struct RepositorioAlunos {
 }
 
 impl RepositorioAlunos {
-    pub fn new() -> RepositorioAlunos {
+    pub const fn new() -> RepositorioAlunos {
         RepositorioAlunos {
             alunos: Vec::new()
         }

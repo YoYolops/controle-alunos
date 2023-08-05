@@ -4,9 +4,10 @@ mod utils;
 mod models;
 mod errors;
 
-use crate::utils::io;
+use crate::{utils::io, facade::Facade, errors::handler as error_handler};
 
 fn main() {
+    const CONTROLE_ALUNOS: Facade = facade::Facade::new();
     let mut user_option: String = String::from("");
     
     while user_option.to_lowercase() != "s" {
@@ -14,8 +15,15 @@ fn main() {
         user_option = io::input();
 
         match user_option.as_str().trim() {
-            "c" => println!("You chose a"),
-            _ => println!("I just do not know what is happening")
+            "c" => error_handler::handle(CONTROLE_ALUNOS.cadastrar_aluno()),
+            "e" => println!("(E)xibir Aluno"),
+            "n" => println!("(N)ovo Grupo"),
+            "a" => println!("(A)locar Aluno no Grupo e Verificar pertinência a Grupos"),
+            "r" => println!("(R)egistrar Aluno que Respondeu"),
+            "i" => println!(""),
+            "o" => println!(""),
+            "s" => println!(""),
+            _ => println!("Opção Inválida!")
         }
     }
 
