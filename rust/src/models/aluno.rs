@@ -27,7 +27,7 @@ impl Aluno {
     }
 
     pub fn display(&self) {
-        println!("{} - {} - {};", &self.get_matricula(), &self.get_nome(), &self.get_curso());
+        println!("{} - {} - {}", &self.get_matricula(), &self.get_nome(), &self.get_curso());
     }
 }
 

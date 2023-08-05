@@ -6,7 +6,7 @@ pub struct RepositorioAlunos {
 }
 
 impl RepositorioAlunos {
-    pub const fn new() -> RepositorioAlunos {
+    pub fn new() -> RepositorioAlunos {
         RepositorioAlunos {
             alunos: Vec::new()
         }
@@ -38,12 +38,10 @@ impl RepositorioAlunos {
     }
 
     fn aluno_already_registered(&self, matricula: &String) -> bool {
-        for i in &self.alunos {
-            if i.get_matricula() == matricula {
-                return true;
-            }
+        match &self.procurar_aluno(matricula) {
+            Some(_aluno) => return true,
+            None => return false
         }
-        false
     }
 }
 

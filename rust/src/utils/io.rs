@@ -6,7 +6,7 @@ pub fn input() -> String {
         .read_line(&mut input_string)
         .expect("Panicked while colecting user input");
 
-    input_string
+    String::from(input_string.trim())
 }
 
 pub fn print_menu() {
