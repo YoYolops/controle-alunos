@@ -9,11 +9,11 @@ pub struct Facade {
 }
 
 impl Facade {
-    pub fn new() -> Facade {
+    pub const fn new() -> Facade {
         Facade {repositorio_alunos: RepositorioAlunos::new()}
     }
 
-    pub const fn cadastrar_aluno(&mut self) -> Result<(), InvalidParameters> {
+    pub fn cadastrar_aluno(&mut self) -> Result<(), InvalidParameters> {
         print!("Matrícula: "); io::flush_stdout_buffer();
         let matricula: String = io::input();
     
@@ -25,5 +25,15 @@ impl Facade {
     
         let _ = &self.repositorio_alunos.cadastrar_aluno(matricula, nome, curso)?;
         Ok(())
+    }
+
+    pub fn consultar_aluno(&self) {
+        print!("Matrícula: "); io::flush_stdout_buffer();
+        let matricula:String = io::input();
+        println!();
+        match &self.repositorio_alunos.procurar_aluno(&matricula) {
+            Some(aluno) => aluno.display(),
+            None => println!("Não há nenhum aluno com essa matrícula")
+        }
     }
 }

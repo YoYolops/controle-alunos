@@ -22,9 +22,18 @@ impl RepositorioAlunos {
         Ok(())
     }
 
+    pub fn procurar_aluno(&self, imatricula: &String) -> Option<&Aluno> {
+        for aluno in &self.alunos {
+            if aluno.get_matricula() == imatricula {
+                return Some(&aluno);
+            }
+        }
+        None
+    }
+
     pub fn listar_alunos(&self) {
         for i in &self.alunos {
-            println!("{} - {} - {}", i.get_matricula(), i.get_nome(), i.get_curso());
+            i.display();
         }
     }
 

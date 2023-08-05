@@ -27,3 +27,7 @@ Joaninha.java
 # Generated files
 /target/
 rust/target/
+
+# Personal testing files
+joaninha.rs
+joaninha

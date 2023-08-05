@@ -25,5 +25,9 @@ impl Aluno {
     pub fn get_curso(&self) -> &String {
         &self.curso
     }
+
+    pub fn display(&self) {
+        println!("{} - {} - {};", &self.get_matricula(), &self.get_nome(), &self.get_curso());
+    }
 }
 

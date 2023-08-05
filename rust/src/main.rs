@@ -16,7 +16,7 @@ fn main() {
 
         match user_option.as_str().trim() {
             "c" => error_handler::handle(CONTROLE_ALUNOS.cadastrar_aluno()),
-            "e" => println!("(E)xibir Aluno"),
+            "e" => CONTROLE_ALUNOS.consultar_aluno(),
             "n" => println!("(N)ovo Grupo"),
             "a" => println!("(A)locar Aluno no Grupo e Verificar pertinência a Grupos"),
             "r" => println!("(R)egistrar Aluno que Respondeu"),
