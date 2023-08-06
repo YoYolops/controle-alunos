@@ -114,4 +114,8 @@ impl Facade {
             Err(_) => println!("Matricula informada não existe no sistema")
         }
     }
+
+    pub fn imprimir_respondentes(&self) {
+        self.repositorio_respondentes.display(&self.repositorio_alunos);
+    }
 }

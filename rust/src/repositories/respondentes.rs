@@ -19,4 +19,13 @@ impl RepositorioRespondentes {
         }
         Err(InvalidParameters::ValueNotFound)
     }
+
+    pub fn display(&self, rep_alunos: &RepositorioAlunos) {
+        for matricula in &self.matriculas_respondentes {
+            match rep_alunos.procurar_aluno(matricula) {
+                Some(aluno) => aluno.display(),
+                None => (),
+            }
+        }
+    }
 }

@@ -20,7 +20,7 @@ fn main() {
             "n" => system_facade.cadastrar_grupo(),
             "a" => system_facade.alocar_aluno_em_grupo(),
             "r" => system_facade.cadastrar_respondente(),
-            "i" => println!(""),
+            "i" => system_facade.imprimir_respondentes(),
             "o" => println!(""),
             "s" => println!(""),
             _ => println!("Opção Inválida!")
