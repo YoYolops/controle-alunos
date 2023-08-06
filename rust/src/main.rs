@@ -19,7 +19,7 @@ fn main() {
             "e" => system_facade.consultar_aluno(),
             "n" => system_facade.cadastrar_grupo(),
             "a" => system_facade.alocar_aluno_em_grupo(),
-            "r" => println!("(R)egistrar Aluno que Respondeu"),
+            "r" => system_facade.cadastrar_respondente(),
             "i" => println!(""),
             "o" => println!(""),
             "s" => println!(""),

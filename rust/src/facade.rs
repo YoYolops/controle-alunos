@@ -1,25 +1,27 @@
-use crate::utils::io::flush_stdout_buffer;
 use crate::utils::{
     io,
     parsers
 };
 use crate::repositories::{
     alunos::RepositorioAlunos,
-    grupos::RepositorioGrupos
+    grupos::RepositorioGrupos,
+    respondentes::RepositorioRespondentes
 };
 use crate::models::{
     aluno::Aluno,
 };
 pub struct Facade {
     repositorio_alunos: RepositorioAlunos,
-    repositorio_grupos: RepositorioGrupos
+    repositorio_grupos: RepositorioGrupos,
+    repositorio_respondentes: RepositorioRespondentes
 }
 
 impl Facade {
     pub fn new() -> Self {
         Facade {
             repositorio_alunos: RepositorioAlunos::new(),
-            repositorio_grupos: RepositorioGrupos::new()
+            repositorio_grupos: RepositorioGrupos::new(),
+            repositorio_respondentes: RepositorioRespondentes::new()
         }
     }
 
@@ -100,6 +102,16 @@ impl Facade {
                 }
             }
             _ => println!("Opção inválida"),
+        }
+    }
+
+    pub fn cadastrar_respondente(&mut self) {
+        print!("Matricula: "); io::flush_stdout_buffer();
+        let matricula: String = io::input();
+
+        match &self.repositorio_respondentes.adicionar_respondente(matricula, &self.repositorio_alunos) {
+            Ok(_) => println!("Aluno Registrado!"),
+            Err(_) => println!("Matricula informada não existe no sistema")
         }
     }
 }
