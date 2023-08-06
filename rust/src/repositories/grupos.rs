@@ -1,10 +1,13 @@
-use crate::models::grupo::Grupo;
+use crate::models::{
+    grupo::Grupo,
+    aluno::Aluno
+};
 
-pub struct RepositorioGrupos<'a> {
-    grupos: Vec<Grupo<'a>>
+pub struct RepositorioGrupos {
+    grupos: Vec<Grupo>
 }
 
-impl <'a> RepositorioGrupos<'a> {
+impl RepositorioGrupos {
     pub fn new() -> Self {
         RepositorioGrupos { grupos: Vec::new() }
     }
@@ -16,6 +19,34 @@ impl <'a> RepositorioGrupos<'a> {
     pub fn listar_grupos(&self) {
         for grupo in &self.grupos {
             grupo.display();
+        }
+    }
+
+    pub fn alocar_aluno_em_grupo(&mut self, aluno: Aluno, nome_grupo: &String) {
+        for grupo in &mut self.grupos {
+            if grupo.get_nome() == nome_grupo {
+                grupo.alocar_aluno(aluno);
+                break;
+            }
+        }
+    }
+
+    pub fn get_grupo(&mut self, nome_grupo: &String) -> Option<&Grupo> {
+        for grupo in &self.grupos {
+            if grupo.get_nome() == nome_grupo {
+                return Some(grupo);
+            }
+        }
+        None
+    }
+
+    pub fn verificar_pertinencia_a_grupo(&mut self, nome_grupo: &String, matricula: &String) -> bool {
+        match &self.get_grupo(nome_grupo) {
+            Some(grupo) => return grupo.is_aluno_alocado(matricula),
+            None => {
+                println!("Grupo não cadastrado");
+                return false;
+            }
         }
     }
 }

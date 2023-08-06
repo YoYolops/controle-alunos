@@ -1,3 +1,4 @@
+use crate::utils::io::flush_stdout_buffer;
 use crate::utils::{
     io,
     parsers
@@ -6,12 +7,15 @@ use crate::repositories::{
     alunos::RepositorioAlunos,
     grupos::RepositorioGrupos
 };
-pub struct Facade<'a> {
+use crate::models::{
+    aluno::Aluno,
+};
+pub struct Facade {
     repositorio_alunos: RepositorioAlunos,
-    repositorio_grupos: RepositorioGrupos<'a>
+    repositorio_grupos: RepositorioGrupos
 }
 
-impl<'a> Facade <'a> {
+impl Facade {
     pub fn new() -> Self {
         Facade {
             repositorio_alunos: RepositorioAlunos::new(),
@@ -57,5 +61,45 @@ impl<'a> Facade <'a> {
             .cadastrar_novo_grupo(nome_grupo, tamanho);
 
         println!("Cadastro Realizado");
+    }
+
+    pub fn alocar_aluno_em_grupo(&mut self) {
+        print!("(A)locar Aluno ou (P)ertinência a Grupo? "); io::flush_stdout_buffer();
+        let user_option: String = io::input().to_lowercase();
+
+        match user_option.as_str().trim() {
+            "a" => {
+                print!("Matrícula: "); io::flush_stdout_buffer();
+                let matricula: String = io::input();
+                print!("Grupo: "); io::flush_stdout_buffer();
+                let nome_grupo: String = io::input();
+
+                let aluno: Option<&Aluno> = self.repositorio_alunos.procurar_aluno(&matricula);
+                match aluno {
+                    Some(unwraped_aluno) => {
+                        self.repositorio_grupos.alocar_aluno_em_grupo(unwraped_aluno.clone(), &nome_grupo);
+                    },
+                    None => println!("Aluno não cadastrado!"),
+                };
+            },
+            "p" => {
+                print!("Grupo: "); io::flush_stdout_buffer();
+                let nome_grupo: String = io::input();
+                print!("Aluno: "); io::flush_stdout_buffer();
+                let matricula_aluno: String = io::input();
+
+                if !self.repositorio_alunos.aluno_already_registered(&matricula_aluno) {
+                    println!("Aluno não existe");
+                    return;
+                }
+
+                if self.repositorio_grupos.verificar_pertinencia_a_grupo(&nome_grupo, &matricula_aluno) {
+                    println!("Aluno pertence ao grupo");
+                } else {
+                    println!("Aluno não pertence ao grupo");
+                }
+            }
+            _ => println!("Opção inválida"),
+        }
     }
 }

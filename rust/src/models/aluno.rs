@@ -2,7 +2,8 @@
 pub struct Aluno {
     nome: String,
     matricula: String,
-    curso: String
+    curso: String,
+    is_origin: bool
 }
 
 impl Aluno {
@@ -10,7 +11,8 @@ impl Aluno {
         Aluno {
             nome: inome,
             matricula: imatricula,
-            curso: icurso
+            curso: icurso,
+            is_origin: true
         }
     }
 
@@ -24,6 +26,15 @@ impl Aluno {
 
     pub fn get_curso(&self) -> &String {
         &self.curso
+    }
+
+    pub fn clone(&self) -> Self {
+        Aluno {
+            nome: String::from(&self.nome),
+            matricula: String::from(&self.matricula),
+            curso: String::from(&self.curso),
+            is_origin: false
+        }
     }
 
     pub fn display(&self) {

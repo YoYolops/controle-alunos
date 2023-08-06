@@ -18,7 +18,7 @@ fn main() {
             "c" => system_facade.cadastrar_aluno(),
             "e" => system_facade.consultar_aluno(),
             "n" => system_facade.cadastrar_grupo(),
-            "a" => println!("(A)locar Aluno no Grupo e Verificar pertinência a Grupos"),
+            "a" => system_facade.alocar_aluno_em_grupo(),
             "r" => println!("(R)egistrar Aluno que Respondeu"),
             "i" => println!(""),
             "o" => println!(""),

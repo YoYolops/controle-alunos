@@ -1,13 +1,13 @@
 use crate::errors::parameters::InvalidParameters;
 use crate::models::aluno::Aluno;
 
-pub struct Grupo<'a> {
+pub struct Grupo<> {
     nome: String,
     tamanho: isize,
-    alunos: Vec<&'a Aluno>
+    alunos: Vec<Aluno>
 }
 
-impl<'a> Grupo<'a> {
+impl Grupo {
     pub fn new(inome: String, itamanho: isize) -> Self {
         Grupo {
             nome: inome,
@@ -29,13 +29,14 @@ impl<'a> Grupo<'a> {
         false
     }
 
-    pub fn alocar_aluno(&mut self, aluno: &'a Aluno) {
+    pub fn alocar_aluno(&mut self, aluno: Aluno) {
         if !self.is_aluno_alocado(aluno.get_matricula()) {
-            &self.alunos.push(aluno);
+            self.alunos.push(aluno);
         }
     }
 
     pub fn display(&self) {
         println!("- {} | Tamanho: {}", &self.get_nome(), &self.tamanho);
     }
+
 }
