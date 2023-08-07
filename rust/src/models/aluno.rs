@@ -3,7 +3,6 @@ pub struct Aluno {
     nome: String,
     matricula: String,
     curso: String,
-    is_origin: bool
 }
 
 impl Aluno {
@@ -12,7 +11,6 @@ impl Aluno {
             nome: inome,
             matricula: imatricula,
             curso: icurso,
-            is_origin: true
         }
     }
 
@@ -32,8 +30,7 @@ impl Aluno {
         Aluno {
             nome: String::from(&self.nome),
             matricula: String::from(&self.matricula),
-            curso: String::from(&self.curso),
-            is_origin: false
+            curso: String::from(&self.curso)
         }
     }
 

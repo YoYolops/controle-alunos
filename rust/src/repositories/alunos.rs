@@ -31,12 +31,6 @@ impl RepositorioAlunos {
         None
     }
 
-    pub fn listar_alunos(&self) {
-        for i in &self.alunos {
-            i.display();
-        }
-    }
-
     pub fn aluno_already_registered(&self, matricula: &String) -> bool {
         match &self.procurar_aluno(matricula) {
             Some(_aluno) => return true,

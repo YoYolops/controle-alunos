@@ -1,14 +1,13 @@
-use crate::errors::parameters::InvalidParameters;
 use crate::models::aluno::Aluno;
 
 pub struct Grupo<> {
     nome: String,
-    tamanho: isize,
+    tamanho: usize,
     alunos: Vec<Aluno>
 }
 
 impl Grupo {
-    pub fn new(inome: String, itamanho: isize) -> Self {
+    pub fn new(inome: String, itamanho: usize) -> Self {
         Grupo {
             nome: inome,
             tamanho: itamanho,
@@ -30,13 +29,13 @@ impl Grupo {
     }
 
     pub fn alocar_aluno(&mut self, aluno: Aluno) {
-        if !self.is_aluno_alocado(aluno.get_matricula()) {
-            self.alunos.push(aluno);
+        if self.tamanho == 0 && self.alunos.len() < self.tamanho {
+            if !self.is_aluno_alocado(aluno.get_matricula()) {
+                self.alunos.push(aluno);
+            }
+        } else {
+            println!("Grupo Cheio!");
         }
-    }
 
-    pub fn display(&self) {
-        println!("- {} | Tamanho: {}", &self.get_nome(), &self.tamanho);
     }
-
 }

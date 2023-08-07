@@ -7,9 +7,7 @@ use crate::repositories::{
     grupos::RepositorioGrupos,
     respondentes::RepositorioRespondentes
 };
-use crate::models::{
-    aluno::Aluno,
-};
+use crate::models::aluno::Aluno;
 pub struct Facade {
     repositorio_alunos: RepositorioAlunos,
     repositorio_grupos: RepositorioGrupos,
@@ -55,12 +53,16 @@ impl Facade {
     pub fn cadastrar_grupo(&mut self) {
         print!("Grupo: "); io::flush_stdout_buffer();
         let nome_grupo: String = io::input();
+        
         print!("Tamanho: "); io::flush_stdout_buffer();
-        let tamanho: isize = parsers::parse_to_int(&io::input());
+        let mut tamanho: String = io::input();
+        if tamanho == "" {
+            tamanho = String::from("0");
+        }
 
         self
             .repositorio_grupos
-            .cadastrar_novo_grupo(nome_grupo, tamanho);
+            .cadastrar_novo_grupo(nome_grupo, parsers::parse_to_int(&tamanho));
 
         println!("Cadastro Realizado");
     }
@@ -117,5 +119,12 @@ impl Facade {
 
     pub fn imprimir_respondentes(&self) {
         self.repositorio_respondentes.display(&self.repositorio_alunos);
+    }
+
+    pub fn imprimir_grupos_do_estudante(&self) {
+        print!("Matrícula: "); io::flush_stdout_buffer();
+        let matricula: String = io::input();
+        
+        self.repositorio_grupos.display_grupos_do_estudante(&matricula);
     }
 }

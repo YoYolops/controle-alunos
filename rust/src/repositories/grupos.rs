@@ -12,14 +12,8 @@ impl RepositorioGrupos {
         RepositorioGrupos { grupos: Vec::new() }
     }
 
-    pub fn cadastrar_novo_grupo(&mut self, inome: String, itamanho: isize) {
+    pub fn cadastrar_novo_grupo(&mut self, inome: String, itamanho: usize) {
         self.grupos.push(Grupo::new(inome, itamanho));
-    }
-
-    pub fn listar_grupos(&self) {
-        for grupo in &self.grupos {
-            grupo.display();
-        }
     }
 
     pub fn alocar_aluno_em_grupo(&mut self, aluno: Aluno, nome_grupo: &String) {
@@ -46,6 +40,14 @@ impl RepositorioGrupos {
             None => {
                 println!("Grupo não cadastrado");
                 return false;
+            }
+        }
+    }
+
+    pub fn display_grupos_do_estudante(&self, matricula: &String) {
+        for grupo in &self.grupos {
+            if grupo.is_aluno_alocado(matricula) {
+                println!("- {}", grupo.get_nome())
             }
         }
     }

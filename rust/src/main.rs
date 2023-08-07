@@ -21,8 +21,8 @@ fn main() {
             "a" => system_facade.alocar_aluno_em_grupo(),
             "r" => system_facade.cadastrar_respondente(),
             "i" => system_facade.imprimir_respondentes(),
-            "o" => println!(""),
-            "s" => println!(""),
+            "o" => system_facade.imprimir_grupos_do_estudante(),
+            "s" => break,
             _ => println!("Opção Inválida!")
         }
     }
