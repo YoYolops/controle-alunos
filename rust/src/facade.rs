@@ -63,8 +63,6 @@ impl Facade {
         self
             .repositorio_grupos
             .cadastrar_novo_grupo(nome_grupo, parsers::parse_to_int(&tamanho));
-
-        println!("Cadastro Realizado");
     }
 
     pub fn alocar_aluno_em_grupo(&mut self) {
@@ -89,7 +87,7 @@ impl Facade {
             "p" => {
                 print!("Grupo: "); io::flush_stdout_buffer();
                 let nome_grupo: String = io::input();
-                print!("Aluno: "); io::flush_stdout_buffer();
+                print!("Matrícula: "); io::flush_stdout_buffer();
                 let matricula_aluno: String = io::input();
 
                 if !self.repositorio_alunos.aluno_already_registered(&matricula_aluno) {

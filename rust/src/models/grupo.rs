@@ -29,7 +29,7 @@ impl Grupo {
     }
 
     pub fn alocar_aluno(&mut self, aluno: Aluno) {
-        if self.tamanho == 0 && self.alunos.len() < self.tamanho {
+        if self.tamanho == 0 || self.alunos.len() < self.tamanho {
             if !self.is_aluno_alocado(aluno.get_matricula()) {
                 self.alunos.push(aluno);
             }

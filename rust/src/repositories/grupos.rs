@@ -13,16 +13,25 @@ impl RepositorioGrupos {
     }
 
     pub fn cadastrar_novo_grupo(&mut self, inome: String, itamanho: usize) {
-        self.grupos.push(Grupo::new(inome, itamanho));
+        match self.get_grupo(&inome) {
+            Some(_) => println!("Já existe um grupo com esse nome"),
+            None => {
+                self.grupos.push(Grupo::new(inome, itamanho));
+                println!("Grupo cadastrado!")
+            },
+        }
+        
     }
 
     pub fn alocar_aluno_em_grupo(&mut self, aluno: Aluno, nome_grupo: &String) {
         for grupo in &mut self.grupos {
             if grupo.get_nome() == nome_grupo {
                 grupo.alocar_aluno(aluno);
-                break;
+                println!("Aluno alocado!");
+                return;
             }
         }
+        println!("O grupo informado não existe. Aluno NÃO alocado");
     }
 
     pub fn get_grupo(&mut self, nome_grupo: &String) -> Option<&Grupo> {
